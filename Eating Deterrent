@@ -1,0 +1,23 @@
+import pygame
+from pygame.mixer import Sound
+from gpiozero import MotionSensor
+from time import sleep
+import random
+pygame.init()
+pygame.mixer.init()
+sounds = [
+        pygame.mixer.Sound("drdisrespect1.ogg"),
+        pygame.mixer.Sound("drdisrespect2.ogg"),
+        pygame.mixer.Sound("drdisrespect3.ogg"),
+        pygame.mixer.Sound("drdisrespect4.ogg")
+        ]
+pir = MotionSensor(4)
+while True:
+    if pir.motion_detected:
+        print("Motion detected!")
+        playSound = random.choice(sounds)
+        playSound.play()
+        sleep(15)
+        playSound.stop()
+    else:
+        print ("No motion")
